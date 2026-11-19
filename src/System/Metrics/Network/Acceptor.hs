@@ -32,7 +32,7 @@ import           Ouroboros.Network.Mux (MiniProtocol (..), MiniProtocolCb (..),
                                         MiniProtocolNum (..),
                                         OuroborosApplication (..),
                                         RunMiniProtocol (..),
-                                        miniProtocolLimits, miniProtocolNum, miniProtocolRun)
+                                        miniProtocolLimits, miniProtocolNum, miniProtocolRun, symmetricLimits)
 import           Ouroboros.Network.Snocket (LocalAddress, MakeBearer, Snocket,
                                             localAddressFromPath, localSnocket, socketSnocket,
                                             makeLocalBearer, makeSocketBearer)
@@ -130,7 +130,7 @@ acceptorApp config mkStore insertStore peerErrorHandler =
     MiniProtocol
       { miniProtocolNum    = MiniProtocolNum 2
       , miniProtocolStart  = Mux.StartEagerly
-      , miniProtocolLimits = MiniProtocolLimits { maximumIngressQueue = maxBound }
+      , miniProtocolLimits = symmetricLimits MiniProtocolLimits { maximumIngressQueue = maxBound }
       , miniProtocolRun    = acceptMetricsResp config mkStore insertStore peerErrorHandler
       }
   ]

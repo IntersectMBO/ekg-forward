@@ -63,8 +63,8 @@ library
                        , ekg-core
                        , io-classes >= 1.4.1
                        , network
-                       , network-mux
-                       , ouroboros-network:{api, framework} ^>= 2.0
+                       , network-mux ^>= 1.1
+                       , ouroboros-network:{api, framework} ^>= 2.1
                        , singletons ^>= 3.0
                        , serialise
                        , stm
