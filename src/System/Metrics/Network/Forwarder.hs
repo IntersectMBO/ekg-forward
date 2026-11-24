@@ -30,7 +30,7 @@ import           Ouroboros.Network.Driver.Limits (ProtocolTimeLimits)
 import           Ouroboros.Network.IOManager (withIOManager)
 import           Ouroboros.Network.Mux (MiniProtocol (..), MiniProtocolCb (..), MiniProtocolLimits (..), MiniProtocolNum (..),
                                         OuroborosApplication (..), RunMiniProtocol (..),
-                                        miniProtocolLimits, miniProtocolNum, miniProtocolRun)
+                                        miniProtocolLimits, miniProtocolNum, miniProtocolRun, symmetricLimits)
 import           Ouroboros.Network.Protocol.Handshake.Codec (VersionDataCodec, noTimeLimitsHandshake,
                                                              timeLimitsHandshake)
 import           Ouroboros.Network.Protocol.Handshake.Type (Handshake)
@@ -135,7 +135,7 @@ forwarderApp config ekgStore =
     [ MiniProtocol
         { miniProtocolNum    = MiniProtocolNum 2
         , miniProtocolStart  = Mux.StartEagerly
-        , miniProtocolLimits = MiniProtocolLimits { maximumIngressQueue = maxBound }
+        , miniProtocolLimits = symmetricLimits MiniProtocolLimits { maximumIngressQueue = maxBound }
         , miniProtocolRun    = if useDummyForwarder config then forwardEKGMetricsDummy else forwardEKGMetrics config ekgStore
         }
     ]

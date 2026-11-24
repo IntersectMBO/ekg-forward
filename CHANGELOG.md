@@ -1,5 +1,9 @@
 # Changelog
 
+## 1.5 - Nov 2026
+
+* Updated to `ouroboros-network-2.1`
+
 ## 1.4 - Oct 2026
 
 * Updated to `ouroboros-network-2.0`.
